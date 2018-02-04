@@ -1,0 +1,23 @@
+<h1>All Thermostats</h1>
+<hr/>
+
+<div class="container white_pane">
+ 
+
+      <%= link_to "" do %>
+          <%= image_tag "add_thermostat.jpg", class: "col-md-3 merchant_gallery" %>
+      <% end %>
+    
+
+
+    <% @thermostats.each do |thermostat| %>
+        
+
+          <div class="col-md-3">
+              
+              <div class="thermostat_gallery"><%= thermostat.temperature  %></div>
+              <div class="thermostat_gallery_name",margin-left=30px><%= link_to thermostat.name, thermostat_path(thermostat) %></div>
+          </div> 
+    
+    <% end %>
+</div>

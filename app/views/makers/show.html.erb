@@ -1,0 +1,44 @@
+<div class="container white_pane">
+  
+    <div class="row">
+  
+      <div class="col-md-6 product_header">
+        <%= link_to gravatar_for(@maker, size:75), maker_path(@maker) %>
+        &nbsp;&nbsp;
+        <%= @maker.makername %>
+     </div>
+    </div>
+  <br>
+  
+  
+  <ul class="nav nav-tabs">
+    <li class='active'>
+      <%= link_to "Things", maker_path(@maker) %>
+    </li>
+    <% if logged_in? and @maker == current_user %>
+    <li>
+      <%= link_to "Your Profile", edit_maker_path(@maker) %>
+    </li>
+    <% end %>
+  </ul>
+
+    <% if logged_in? and @maker == current_user %>
+      <%= link_to new_thermostat_path do %>
+       <%= image_tag "add_thermostat.jpg", class: "col-md-3 merchant_gallery" %>
+      <% end %>
+    <% end %>
+    
+
+
+    <% @thermostats.each do |thermostat| %>
+        
+          <div class="col-md-3">
+              <div class="thermostat_gallery"><%= thermostat.temperature  %></div>
+              <div class="thermostat_gallery_name",margin-left=30px><%= link_to thermostat.name, thermostat_path(thermostat) %></div>
+          </div> 
+    
+    <% end %>
+
+
+  
+</div>

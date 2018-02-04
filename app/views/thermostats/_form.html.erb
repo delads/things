@@ -1,0 +1,31 @@
+<div class="container">
+<%= render 'shared/errors', obj: @thermostat %>
+
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for(@thermostat, html: { multipart: true }) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      
+      <%= f.label :max_temperature %>
+      <%= f.text_field :max_temperature %>
+      
+      <%= f.label :interval %>
+      <%= f.text_field :interval %>
+      
+      <%= f.label :namespace %>
+      <%= f.text_field :namespace %>
+      
+      <%= f.label :mqtt_user %>
+      <%= f.text_field :mqtt_user %>
+      
+      <%= f.label :mqtt_password %>
+      <%= f.text_field :mqtt_password %>
+      
+
+      
+      <%= f.submit(@thermostat.new_record? ? 'Create Thermostat' : 'Edit Thermostat', class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "thermostats" %>
+
+		
+</head>
+<body   onload="init()">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paymentfont/1.2.4/css/paymentfont.min.css">
+
+
+    
+    <%= render 'layouts/navigation' %> 
+    <%= render 'layouts/messages' %>
+    
+    <%= yield %>
+
+    <%= render 'layouts/footer' %> 
+   
+
+</body>
+</html>

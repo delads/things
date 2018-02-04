@@ -1,0 +1,56 @@
+
+    
+
+<p>
+    <h2><%= @thermostat.name %></h2>
+</p>
+
+<div class="row">
+    <div class="col-md-2 pull-left center">
+        <div class="thermostat_gallery" id='update_temperature'></div>
+        
+        
+        
+    </div>
+    <div class="col-md-8">
+        <h4>Thermostat settings</h4>
+        <div class="well">
+            <p> Name: <%= @thermostat.name %></p>
+            <p> Temperature: <div id='update_temperature_inline'></div></p>
+            <p> Max Temperature: <%= @thermostat.max_temperature %></p>
+            <p> Interval: <%= @thermostat.interval %></p>
+            <p> Namespace: <%= @thermostat.namespace %></p>
+            <p> MQTT username: <%= @thermostat.mqtt_user %></p>
+            <p> MQTT password: <%= @thermostat.mqtt_password %></p>
+           
+        </div>
+    </div> 
+    
+    
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-sm-1 text-left pull-left">
+                <%= link_to '', edit_thermostat_path(@thermostat), class: "glyphicon glyphicon-wrench" %>
+                &nbsp;&nbsp;
+                <%= link_to "",  @thermostat, class: "glyphicon glyphicon-trash", method: :delete,data: { confirm: "You sure?" } %>
+    </div>
+ </div> 
+ 
+ <hr>
+        
+<div class="row">
+     <div class="col-md-2 pull-left center">
+       
+    </div>
+    <div class="col-md-8">
+        <iframe src= <%= @shiftrsrc %>
+            width="600" 
+            height="400" 
+            frameborder="0" 
+            webkitallowfullscreen 
+            mozallowfullscreen 
+            allowfullscreen
+        </iframe>
+    </div>
+</div>

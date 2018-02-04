@@ -1,0 +1,30 @@
+<div class="container white_pane">
+  
+  
+  <div class="row">
+ 
+    <% @makers.each do |maker| %>
+    <div class="h4" ><%= maker.makername %></div>
+    <div class="h5" ><%= maker.email %></div>
+    <br>
+  <% end %>
+  
+  </div>
+ 
+ 
+ <!-- 
+  <div class="row">
+    
+  <%  data = @account_list["data"] %>
+    
+  <% data.each do |key, array| %>
+  <%= "#{key}-----" %>
+  <%= array %>
+  <br><br>
+<% end %>
+    
+  </div>
+  
+  -->
+  
+</div>  
