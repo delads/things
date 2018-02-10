@@ -7,8 +7,11 @@ Doorkeeper.configure do
     # fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # Example implementation:
-    Maker.find_by_id(session[:maker_id]) || redirect_to(login_path)
+    Maker.find_by_id(session[:maker_id]) || redirect_to(oauth_login_path(return_to: request.fullpath ))
   end
+  
+  # Issue access tokens with refresh token (disabled by default)
+   use_refresh_token
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   # admin_authenticator do
@@ -42,8 +45,7 @@ Doorkeeper.configure do
   # Rationale: https://github.com/doorkeeper-gem/doorkeeper/issues/383
   # reuse_access_token
 
-  # Issue access tokens with refresh token (disabled by default)
-  # use_refresh_token
+
 
   # Provide support for an owner to be assigned to each registered application (disabled by default)
   # Optional parameter confirmation: true (default false) if you want to enforce ownership of

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :makers, except: [:new] 
   
   get 'thermostats/:id/temp', to: 'thermostats#temp'
+  get 'apis/listthermostats', to: 'apis#listthermostats'
+  get 'apis/describemaker', to: 'apis#describemaker'
   
   get '/login', to: "logins#new"
   post '/login', to: "logins#create"

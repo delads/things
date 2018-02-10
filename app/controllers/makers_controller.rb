@@ -48,10 +48,11 @@ class MakersController < ApplicationController
   def show
 #    @thermostats = @merchant.products.paginate(page: params[:page], per_page: 3)
     @thermostats = @maker.thermostats
-
+    
+    
   end
   
-  
+
   private
     def maker_params
       params.require(:maker).permit(:makername, :email, :password)
