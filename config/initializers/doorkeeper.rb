@@ -7,7 +7,7 @@ Doorkeeper.configure do
     # fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # Example implementation:
-    Maker.find_by_id(session[:maker_id]) || redirect_to(oauth_login_path(return_to: request.fullpath ))
+    Maker.find_by_id(session[:maker_id]) || redirect_to(login_path(return_to: request.fullpath ))
   end
   
   # Issue access tokens with refresh token (disabled by default)
