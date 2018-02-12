@@ -18,6 +18,8 @@ class ApisController < ApplicationController
      
       thermostat = Thermostat.find(params[:id])
       thermostat.update_attribute(:max_temperature, params[:target_temperature])
+      
+      render json: thermostat
     
   end
   
