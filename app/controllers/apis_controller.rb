@@ -12,6 +12,18 @@ class ApisController < ApplicationController
     render json: @maker
   end
   
+  def settemperature
+     params[:id]
+     
+      thermostat = Thermostat.find(params[:id])
+      thermostat.update_attribute(:max_temperature, params[:target_temperature])
+    
+  end
+  
+  
+  
+  def 
+  
   
   private
     
@@ -25,6 +37,8 @@ class ApisController < ApplicationController
       # @stripe_publishable_api_key = ENV['STRIPE_PUBLISHABLE_API_KEY_TEST']
       # @stripe_client_id = ENV['STRIPE_CLIENT_ID_TEST']
     end
+    
+  end
     
 end
   

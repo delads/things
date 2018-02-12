@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'thermostats/:id/temp', to: 'thermostats#temp'
   get 'apis/listthermostats', to: 'apis#listthermostats'
   get 'apis/describemaker', to: 'apis#describemaker'
+  get 'apis/settemperature', to: 'apis#settemperature'
   
   get '/login', to: "logins#new"
   post '/login', to: "logins#create"
