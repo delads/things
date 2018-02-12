@@ -1,11 +1,12 @@
 class ApisController < ApplicationController
   before_action :doorkeeper_authorize!
   before_action :set_env
-  before_action :set_maker, only: [:listthermostats, :describemaker]
+  before_action :set_maker, only: [:listthermostats, :describemaker, :settemperature]
 
   
   def listthermostats
-    render json: @maker.thermostats
+     render json: @maker.thermostats
+    
   end
   
   def describemaker
@@ -21,10 +22,6 @@ class ApisController < ApplicationController
   end
   
   
-  
-  def 
-  
-  
   private
     
     def set_maker
@@ -37,8 +34,5 @@ class ApisController < ApplicationController
       # @stripe_publishable_api_key = ENV['STRIPE_PUBLISHABLE_API_KEY_TEST']
       # @stripe_client_id = ENV['STRIPE_CLIENT_ID_TEST']
     end
-    
-  end
-    
 end
   
