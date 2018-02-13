@@ -17,7 +17,17 @@ class ApisController < ApplicationController
      params[:id]
      
       thermostat = Thermostat.find(params[:id])
-      thermostat.update_attribute(:max_temperature, params[:target_temperature])
+      target_temp = params[:target_temperature]
+      thermostat.update_attribute(:max_temperature, target_temp)
+      
+      user = thermostat.mqtt_user
+      password = thermostat.mqtt_password
+      
+      
+      client = MQTT::Client.connect('mqtt://' + user + ':' + password + '@broker.shiftr.io')
+      client.publish("max_temp",target_temp)
+      
+      
       
       render json: thermostat
     
