@@ -25,7 +25,7 @@ class ApisController < ApplicationController
       
       
       client = MQTT::Client.connect('mqtt://' + user + ':' + password + '@broker.shiftr.io')
-      client.publish("max_temp",target_temp, retain=false)
+      client.publish("max_temp",target_temp, retain=true)
       client.disconnect()
       
       
