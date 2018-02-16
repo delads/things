@@ -20,6 +20,7 @@ Thread.new do
         puts "#{topic}: #{message}"
         
         
+        
         if(topic == "temperature")
           # Let's update our database
           
