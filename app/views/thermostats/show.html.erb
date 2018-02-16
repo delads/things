@@ -7,7 +7,11 @@
 
 <div class="row">
     <div class="col-md-2 pull-left center">
-        <div class="thermostat_gallery" id='update_temperature'></div>
+        <div class="thermostat_gallery">&nbsp<%= @thermostat.max_temperature  %>
+        <br>
+        <font size="2"><%= @thermostat.temperature %></font>
+        </div>
+        
         
         
         
@@ -16,7 +20,7 @@
         <h4>Thermostat settings</h4>
         <div class="well">
             <p> Name: <%= @thermostat.name %></p>
-            <p> Temperature: <div id='update_temperature_inline'></div></p>
+            <p> Temperature: <%= @thermostat.temperature %></p>
             <p> Max Temperature: <%= @thermostat.max_temperature %></p>
             <p> Interval: <%= @thermostat.interval %></p>
             <p> Namespace: <%= @thermostat.namespace %></p>

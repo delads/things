@@ -1,30 +1,35 @@
-<div class="container white_pane">
+<div class="container">
   
   
-  <div class="row">
+
  
     <% @makers.each do |maker| %>
-    <div class="h4" ><%= maker.makername %></div>
-    <div class="h5" ><%= maker.email %></div>
-    <br>
-  <% end %>
-  
-  </div>
- 
- 
- <!-- 
-  <div class="row">
+      
+      <div class="well row">
     
-  <%  data = @account_list["data"] %>
+      <div class="h4" ><%= maker.makername %></div>
+      <div class="h5" ><%= maker.email %></div>
+      
+      <div class="col-sm-1 text-left pull-left">
+                  <%= link_to "",  maker, class: "glyphicon glyphicon-trash", method: :delete,data: { confirm: "You sure?" } %>
+      </div>
     
-  <% data.each do |key, array| %>
-  <%= "#{key}-----" %>
-  <%= array %>
-  <br><br>
-<% end %>
-    
-  </div>
-  
-  -->
+      <br>
+      <% maker.thermostats.each do |thermostat| %>
+        <div class="col-md-3">
+          <div class="h5" ><%= thermostat.name %></div>
+          <div class="h6">Namespace: <%= thermostat.namespace %></div>
+          <div class="thermostat_gallery">&nbsp<%= thermostat.max_temperature  %>
+              <br>
+              <font size="2"><%= thermostat.temperature %></font>
+          </div>
+        </div>
+        
+      <% end %>
+      
+      
+      </div>
+    <% end %>
+
   
 </div>  

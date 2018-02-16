@@ -19,7 +19,26 @@ class MakersController < ApplicationController
   
   def new 
     @maker = Maker.new
-  end  
+  end 
+  
+  def destroy
+    
+    @maker = Maker.find(params[:id])
+     
+    # Let's delete all thermostats belonging to the user first
+    @thermostats = @maker.thermostats
+    
+    @thermostats.each do |t|
+      t.delete
+    end
+    
+    @maker.delete
+    flash[:success] = "Maker deleted"
+    redirect_to makers_path
+   
+  end
+    
+    
   
   def create
     @maker = Maker.new(maker_params)
@@ -44,6 +63,7 @@ class MakersController < ApplicationController
       render 'edit'
     end
   end
+  
   
   def show
 #    @thermostats = @merchant.products.paginate(page: params[:page], per_page: 3)
