@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/logout', to: "logins#destroy"
   
   get '/register', to: 'makers#new'
+  get '/privacy', to: "pages#privacy"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

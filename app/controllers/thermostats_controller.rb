@@ -43,6 +43,18 @@ before_action :set_maker, only: [:show, :destroy]
     
     def update
         if @thermostat.update(thermostat_params)
+          
+          
+      
+          user = @thermostat.mqtt_user
+          password = @thermostat.mqtt_password
+          target_temp = @thermostat.max_temperature
+      
+          client = MQTT::Client.connect('mqtt://' + user + ':' + password + '@broker.shiftr.io')
+          client.publish("max_temp",target_temp,true)
+          client.disconnect()
+          
+          
           flash[:success] = "Your thermmostat was updated successfully!"
           redirect_to  thermostat_path(@thermostat)
         else
