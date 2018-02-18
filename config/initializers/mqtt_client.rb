@@ -5,7 +5,12 @@ require 'uri'
 
 # Subscribe example
 Thread.new do
-  MQTT::Client.connect('mqtt://1461c437:8f2cf8f35b34ee39@broker.shiftr.io') do |c|
+  
+  user = "1461c437"
+  password = "8f2cf8f35b34ee39"
+  namespace = "delads/nestX"
+  
+  MQTT::Client.connect('mqtt://' + user + ':' + password + '@broker.shiftr.io') do |c|
       
        c.subscribe( 'temperature' )
        c.subscribe( 'turn_off_nest')
@@ -24,9 +29,11 @@ Thread.new do
         if(topic == "temperature")
           # Let's update our database
           
-          thermostat = Thermostat.first
-          thermostat.update_attribute(:temperature, message)
-     
+          thermostats = Thermostat.where("mqtt_user = ? AND mqtt_password = ? AND namespace = ?", user, password, namespace)
+          thermostats.each do |thermostat|
+            thermostat.update_attribute(:temperature, message)
+          end
+          
           
         end
         
