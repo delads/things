@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204091538) do
+ActiveRecord::Schema.define(version: 20180219215634) do
 
   create_table "makers", force: :cascade do |t|
     t.string   "makername"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20180204091538) do
 
   create_table "thermostats", force: :cascade do |t|
     t.float    "temperature"
-    t.integer  "max_temperature"
+    t.float    "max_temperature"
     t.integer  "interval"
     t.string   "namespace"
     t.string   "mqtt_user"
