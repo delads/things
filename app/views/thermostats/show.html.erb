@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-2 pull-left center">
-        <div class="thermostat_gallery">&nbsp<%= @thermostat.max_temperature  %>
+        <div class="thermostat_gallery">&nbsp<%= number_with_precision(@thermostat.max_temperature,:precision => 1)  %>
         <br>
         <font size="2"><%= @thermostat.temperature %></font>
         </div>
@@ -21,7 +21,7 @@
         <div class="well">
             <p> Name: <%= @thermostat.name %></p>
             <p> Temperature: <%= @thermostat.temperature %></p>
-            <p> Max Temperature: <%= @thermostat.max_temperature %></p>
+            <p> Max Temperature: <%= number_with_precision(@thermostat.max_temperature,:precision => 1) %></p>
             <p> Interval: <%= @thermostat.interval %></p>
             <p> Namespace: <%= @thermostat.namespace %></p>
             <p> MQTT username: <%= @thermostat.mqtt_user %></p>
