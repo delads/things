@@ -49,6 +49,11 @@ Thread.new do
           currentTime = Time.now
           diffTime = (currentTime - lastTriggered) *1000 
           
+          puts ("TURN_OFF_NEST: CurrenTime = " + currentTime);
+          puts ("TURN_OFF_NEST: lastTriggered = " + lastTriggered);
+          puts ("TURN_OFF_NEST: diffTime = " + diffTime);
+          
+          
           if(diffTime > timeBetweenTriggers)
               
               lastTriggered = currentTime
