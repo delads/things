@@ -10,6 +10,12 @@ Thread.new do
   password = "8f2cf8f35b34ee39"
   namespace = "delads/nestX"
   
+  lastTriggered = 0;
+  
+  # lets set this to 5 mins
+  timeBetweenTriggers = 300000; 
+  
+  
   MQTT::Client.connect('mqtt://' + user + ':' + password + '@broker.shiftr.io') do |c|
       
        c.subscribe( 'temperature' )
@@ -39,14 +45,24 @@ Thread.new do
         
         
         if(topic == "turn_off_nest")
-            uri = URI('https://maker.ifttt.com/trigger/nestX_hit_max_temp/with/key/n5xldM_GhWuUYTyJmpdtgibxnjO5Cx8VzbW6EaBCo1S')
-            Net::HTTP.start(uri.host, uri.port,
-            :use_ssl => uri.scheme == 'https') do |http|
-                request = Net::HTTP::Get.new uri
-                http.request request # Net::HTTPResponse object
-            end
-            puts ("Sent trigger to IFTTT");
-        end
+          
+          currentTime = Time.now
+          diffTime = (currentTime - lastTriggered) *1000 
+          
+          if(diffTime > timeBetweenTriggers)
+              
+              lastTriggered = currentTime
+          
+              uri = URI('https://maker.ifttt.com/trigger/nestX_hit_max_temp/with/key/n5xldM_GhWuUYTyJmpdtgibxnjO5Cx8VzbW6EaBCo1S')
+              Net::HTTP.start(uri.host, uri.port,
+              :use_ssl => uri.scheme == 'https') do |http|
+                  request = Net::HTTP::Get.new uri
+                  http.request request # Net::HTTPResponse object
+              end
+              puts ("Sent trigger to IFTTT");
+          
+          end #end the if > 5 mins since last trigger sent
+        end #end topic
         
       end
   end
