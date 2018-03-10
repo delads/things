@@ -10,7 +10,7 @@ Thread.new do
   password = "8f2cf8f35b34ee39"
   namespace = "delads/nestX"
   
-  lastTriggered = 0;
+  lastTriggered = Time.now;
   
   # lets set this to 5 mins
   timeBetweenTriggers = 300000; 
@@ -20,6 +20,8 @@ Thread.new do
       
        c.subscribe( 'temperature' )
        c.subscribe( 'turn_off_nest')
+       
+       puts ("MQTT_CLIENT Thread started");
       
       # If you pass a block to the get method, then it will loop
       #c.get('temperature') do |topic,message|
@@ -46,17 +48,19 @@ Thread.new do
         
         if(topic == "turn_off_nest")
           
+          puts ("TURN_OFF_NEST: Topic called");
+          
           currentTime = Time.now
           diffTime = (currentTime - lastTriggered) *1000 
           
-          puts ("TURN_OFF_NEST: CurrenTime = " + currentTime);
-          puts ("TURN_OFF_NEST: lastTriggered = " + lastTriggered);
-          puts ("TURN_OFF_NEST: diffTime = " + diffTime);
+          puts ("TURN_OFF_NEST: CurrenTime = " + currentTime.inspect);
+          puts ("TURN_OFF_NEST: lastTriggered = " + lastTriggered.inspect);
+          puts ("TURN_OFF_NEST: diffTime = " + diffTime.inspect);
           
           
           if(diffTime > timeBetweenTriggers)
               
-              lastTriggered = currentTime
+             lastTriggered = currentTime
           
               uri = URI('https://maker.ifttt.com/trigger/nestX_hit_max_temp/with/key/n5xldM_GhWuUYTyJmpdtgibxnjO5Cx8VzbW6EaBCo1S')
               Net::HTTP.start(uri.host, uri.port,
